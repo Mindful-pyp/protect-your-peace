@@ -6,6 +6,13 @@
     <meta name="color-scheme" content="light" />
     <link rel="icon" href="data:," />
     <title>Protect Your Peace</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1F6F5F" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Protect Your Peace" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
     <style>
       :root {
         --sage: #8AA895;
@@ -1052,6 +1059,13 @@
           <p>Advertisement</p>
         </div>
 
+        <div class="card" id="installCard">
+          <h2>Install PYP on your phone 📱</h2>
+          <p class="sub">Keep your peace one tap away &mdash; add Protect Your Peace to your home screen.</p>
+          <p class="about-text"><strong>On iPhone:</strong> open Protect Your Peace in Safari, tap Share, then tap Add to Home Screen.</p>
+          <p class="about-text"><strong>On Android:</strong> open Protect Your Peace in Chrome, tap the menu, then tap Install app or Add to Home Screen.</p>
+        </div>
+
         <div class="footer-block">
           <p class="f-brand">Protect Your Peace &nbsp;|&nbsp; Free &bull; Interactive &bull; For All Ages</p>
           <p class="f-line">A peaceful world starts with you. 💚</p>
@@ -1272,6 +1286,7 @@
 
         <div class="footer-block">
           <p class="f-line">Completing challenges grows your Peace Garden. 🌿</p>
+          <p class="f-line" style="font-size:13px;"><a href="https://mindful-pyp.github.io/about.html" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.92);text-decoration:underline;">About</a> &nbsp;|&nbsp; <a href="https://mindful-pyp.github.io/privacy-policy.html" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.92);text-decoration:underline;">Privacy Policy</a></p>
         </div>
       </section>
 
@@ -3173,6 +3188,13 @@
         msg.textContent = 'Peace Plus is coming soon! No payments yet — everything here is free. We will let you know when it arrives. 💚';
         setTimeout(function () { msg.textContent = ''; }, 6000);
       });
+      /* ================= Service worker (PWA install) ================= */
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () { /* offline support unavailable — app still works */ });
+        });
+      }
+
     })();
     </script>
   </body>
